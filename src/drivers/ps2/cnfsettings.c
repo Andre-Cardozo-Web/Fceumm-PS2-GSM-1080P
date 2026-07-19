@@ -107,9 +107,9 @@ start_line:
 }  // Ends get_CNF_string
 
 /* Strip any trailing slash from Settings.savepath, set it as the emulator
-   base directory, and override the state-file directory to point directly
-   at savepath so save states are written there instead of to a non-existent
-   "fcs" subdirectory. */
+   base directory, and override the state/NV-save directories to point
+   directly at savepath so save states and battery-backed saves are written
+   there instead of to non-existent subdirectories. */
 static void apply_savepath(void)
 {
     int len = strlen(Settings.savepath);
@@ -117,6 +117,7 @@ static void apply_savepath(void)
         Settings.savepath[len - 1] = '\0';
     FCEUI_SetBaseDirectory(Settings.savepath);
     FCEUI_SetDirOverride(FCEUIOD_STATE, Settings.savepath);
+    FCEUI_SetDirOverride(FCEUIOD_NV, Settings.savepath);
 }
 
 //---------------------------------------------------------------------------
@@ -309,9 +310,9 @@ void Load_Global_CNF(char *CNF_path_p)
 
     // End hdd path mounting
 
-    // Always apply Settings.savepath as the state-save directory so that
-    // save states are stored in the user-configured location regardless of
-    // where the config file itself was loaded from.
+    // Always apply Settings.savepath as the save directory so that
+    // save states and battery-backed saves are stored in the user-configured
+    // location regardless of where the config file itself was loaded from.
     apply_savepath();
 
     if (strlen(CNF_p))  //Was there any unprocessed CNF remainder ?
