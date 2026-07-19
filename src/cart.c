@@ -532,6 +532,7 @@ void FCEU_SaveGameSave(CartInfo *LocalHWInfo) {
 					fwrite(LocalHWInfo->SaveGame[x], 1,
 						   LocalHWInfo->SaveGameLen[x], sp);
 				}
+			fclose(sp);
 		}
 		free(soot);
 	}
@@ -549,8 +550,8 @@ void FCEU_LoadGameSave(CartInfo *LocalHWInfo) {
 			for (x = 0; x < 4; x++)
 				if (LocalHWInfo->SaveGame[x])
 					fread(LocalHWInfo->SaveGame[x], 1, LocalHWInfo->SaveGameLen[x], sp);
+			fclose(sp);
 		}
 		free(soot);
 	}
 }
-
