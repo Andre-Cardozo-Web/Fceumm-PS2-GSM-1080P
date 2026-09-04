@@ -56,3 +56,5 @@ Thanks:
 - The entire ps2dev/ps2-scene community for PS2SDK, gsKit, and various other projects I utilized when porting FCEUltra, especially dlanor for his help and providing uLaunchelf's code as an example from which to work.
 
 FCEUmm-PS2
+
+teste de compilação
